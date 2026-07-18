@@ -88,21 +88,44 @@ alongside this repo's).
 `scripts/common/log_parsing.py` normalizes each honeypot's JSON log lines
 into a common schema using ordered lists of "acceptable field names"
 (e.g. an IP might show up as `src_ip`, `source_ip`, or `srcip` depending on
-the container). These lists were set from T-Pot's documented log layout,
-**not** from a live capture, because they were written before the honeypot
-had received any real attack traffic.
+the container). These lists were initially set from T-Pot's documented log
+layout, then corrected against a real first deployment - `p0f` turned out to
+use `client_ip`/`server_ip`/`client_port`/`server_port` rather than the more
+common `src_*`/`dest_*` naming, which is now reflected in
+`SRC_IP_KEYS`/`DEST_PORT_KEYS`/`SRC_PORT_KEYS`.
 
-After your first real extraction, run:
+If you deploy against a different T-Pot version and metrics look thin, run:
 
 ```bash
 python scripts/analyze_logs.py --dump-sample
 ```
 
 This prints a handful of raw log lines per source. Compare the actual field
-names against `SRC_IP_KEYS`, `DEST_PORT_KEYS`, etc. in
-`scripts/common/log_parsing.py` and add any that are missing. If parsing is
-working, `analyze_logs.py`'s normal run will report non-trivial event counts
-per source instead of "0 events parsed."
+names against the `*_KEYS` lists in `scripts/common/log_parsing.py` and add
+any that are missing. If parsing is working, `analyze_logs.py`'s normal run
+will report non-trivial event counts per source instead of "0 events
+parsed."
+
+## Filtering out non-attacker noise
+
+Two things will otherwise pollute attacker-facing metrics, discovered by
+running against a real (freshly deployed, otherwise-idle) box:
+
+1. **p0f and Suricata's non-alert event types (`flow`, `dns`, `tls`, ...)
+   record *all* traffic through the box, not just inbound attacks** -
+   including the box's own outbound connections (apt updates, NTP, DNS).
+   `compute_metrics()` in `analyze_logs.py` only lets an event contribute to
+   attacker/IP/port/timeline stats if it came from the `honeypots` container
+   (which by construction only receives inbound connections) or is a
+   Suricata *alert* specifically. Other event types still count toward
+   `events_by_source` for visibility, just not toward "attacker" numbers.
+2. **Suricata doesn't distinguish your own admin traffic from an
+   attacker** - connecting to manage the box (e.g. SSH to port 64295) can
+   itself trigger a low-severity alert. Set `analysis.ignore_ips` in
+   `config.yaml` to your own public IP(s) to exclude them. Separately,
+   private/link-local/reserved source IPs (e.g. AWS's `169.254.169.x`
+   metadata service) are filtered out automatically, since a real internet
+   attacker's source IP can never be one of those.
 
 ## Ethics / scope
 

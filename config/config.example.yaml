@@ -37,6 +37,15 @@ geolocation:
   provider: "ip-api"
   cache_path: "data/geo_cache.json"
 
+analysis:
+  # IPs to exclude from every attacker-facing metric (top IPs, countries,
+  # ports, brute-force/scan detection, timeline) - but still counted in
+  # events_by_source for visibility. Suricata/p0f watch ALL traffic through
+  # the box indiscriminately, so your own admin/management connections
+  # (e.g. whatever IP you SSH to port 64295 from) can otherwise show up as
+  # an "attacker" in reports. Add your own public IP here.
+  ignore_ips: []
+
 paths:
   local_data_dir: "data"
   reports_dir: "reports"

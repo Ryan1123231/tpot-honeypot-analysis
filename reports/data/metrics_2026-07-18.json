@@ -1,0 +1,20 @@
+{
+  "generated_at_utc": "2026-07-18T08:34:48Z",
+  "total_events": 16,
+  "ignored_events_from_allowlisted_ips": 16,
+  "events_by_source": {
+    "suricata": 3,
+    "p0f": 13
+  },
+  "unique_attacker_ips": 0,
+  "top_ips": [],
+  "top_countries": [],
+  "top_ports": [],
+  "brute_force_ips": {},
+  "port_scan_ips": {},
+  "malware_families": [],
+  "web_attack_types": [],
+  "top_credential_pairs": [],
+  "timeline_hourly": {},
+  "timeline_daily": {}
+}

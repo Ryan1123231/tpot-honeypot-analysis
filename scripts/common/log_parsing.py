@@ -25,9 +25,12 @@ from typing import Any, Iterator
 logger = logging.getLogger("log_parsing")
 
 # Ordered lists of acceptable keys per logical field, most-likely-first.
+# client_ip/server_ip/client_port/server_port confirmed against real p0f
+# output (p0f labels the honeypot side "server" and the remote side
+# "client" regardless of who initiated the connection).
 SRC_IP_KEYS = ["src_ip", "source_ip", "srcip", "peer_ip", "ip", "remote_ip", "client_ip"]
-DEST_PORT_KEYS = ["dest_port", "dst_port", "target_port", "port", "dport"]
-SRC_PORT_KEYS = ["src_port", "source_port", "sport"]
+DEST_PORT_KEYS = ["dest_port", "dst_port", "target_port", "port", "dport", "server_port"]
+SRC_PORT_KEYS = ["src_port", "source_port", "sport", "client_port"]
 TIMESTAMP_KEYS = ["timestamp", "@timestamp", "time", "datetime", "date"]
 PROTOCOL_KEYS = ["protocol", "proto", "service", "honeypot", "app"]
 USERNAME_KEYS = ["username", "user", "login"]

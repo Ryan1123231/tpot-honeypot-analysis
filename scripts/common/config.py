@@ -33,6 +33,7 @@ class TPotConfig:
     geo_cache_path: str
     local_data_dir: str
     reports_dir: str
+    ignore_ips: list[str]
 
     @property
     def ssh_key_expanded(self) -> str:
@@ -61,6 +62,10 @@ def load_config(config_path: str | Path | None = None) -> TPotConfig:
     tpot = raw.get("tpot", {})
     geo = raw.get("geolocation", {})
     paths = raw.get("paths", {})
+    analysis = raw.get("analysis", {})
+
+    ignore_ips_env = os.environ.get("TPOT_IGNORE_IPS")
+    ignore_ips = ignore_ips_env.split(",") if ignore_ips_env else analysis.get("ignore_ips", [])
 
     ssh_key_path = os.environ.get("TPOT_SSH_KEY_PATH", ec2.get("ssh_key_path", "~/.ssh/id_rsa_cloudways"))
 
@@ -90,4 +95,5 @@ def load_config(config_path: str | Path | None = None) -> TPotConfig:
         geo_cache_path=os.environ.get("TPOT_GEO_CACHE_PATH", geo.get("cache_path", "data/geo_cache.json")),
         local_data_dir=os.environ.get("TPOT_LOCAL_DATA_DIR", paths.get("local_data_dir", "data")),
         reports_dir=os.environ.get("TPOT_REPORTS_DIR", paths.get("reports_dir", "reports")),
+        ignore_ips=[ip.strip() for ip in ignore_ips if ip.strip()],
     )

@@ -71,7 +71,7 @@ def extract_remote_logs(ssh: SSHClient, services: list[str], keep_remote_tar: bo
 
     logger.info("Extracting archive locally to %s", local_dir)
     with tarfile.open(local_tar, "r:gz") as tf:
-        tf.extractall(local_dir)  # noqa: S202 - trusted source (our own honeypot box)
+        tf.extractall(local_dir, filter="data")  # noqa: S202 - trusted source (our own honeypot box)
     local_tar.unlink()
 
     return local_dir

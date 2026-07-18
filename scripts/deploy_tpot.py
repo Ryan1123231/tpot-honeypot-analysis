@@ -54,10 +54,16 @@ TPOT_HOME_DIRNAME = "tpotce"
 # Source: telekom-security/tpotce README (Standard/Sensor) + community
 # guidance for Mini. Verify against current upstream docs before changing
 # flavor - these thresholds change between T-Pot releases.
+#
+# Thresholds are set a bit below the nominal instance size, not the exact
+# advertised RAM: /proc/meminfo always reports less than the nominal size
+# (firmware/hypervisor reservations) - e.g. a real t3.medium (4GiB nominal)
+# reports ~3.8GB here, so a naive "4000" cutoff would reject a perfectly
+# valid box.
 FLAVOR_MINIMUMS = {
-    "i": {"name": "Mini", "ram_mb": 4000, "disk_gb": 30},
-    "s": {"name": "Sensor", "ram_mb": 8000, "disk_gb": 128},
-    "h": {"name": "Hive/Standard", "ram_mb": 16000, "disk_gb": 256},
+    "i": {"name": "Mini", "ram_mb": 3600, "disk_gb": 28},
+    "s": {"name": "Sensor", "ram_mb": 7600, "disk_gb": 120},
+    "h": {"name": "Hive/Standard", "ram_mb": 15500, "disk_gb": 250},
 }
 
 # Honeypot containers to keep running and internet-facing.
@@ -122,8 +128,28 @@ def check_prerequisites(ssh: SSHClient, flavor: str) -> None:
     logger.info("Resource check passed.")
 
 
-def ensure_tpot_user(ssh: SSHClient, tpot_user: str) -> None:
-    logger.info("=== Phase 2: creating non-root sudo user '%s' (T-Pot refuses to install as root) ===", tpot_user)
+def ensure_tpot_user(ssh: SSHClient, tpot_user: str, bootstrap_user: str) -> None:
+    logger.info("=== Phase 2: ensuring non-root sudo user '%s' (T-Pot refuses to install as root) ===", tpot_user)
+
+    if bootstrap_user == tpot_user:
+        # Bootstrap account is already the intended non-root sudo user (e.g.
+        # the default 'ubuntu' user on a standard AWS Ubuntu AMI) - nothing
+        # to create, just confirm it actually has passwordless sudo.
+        logger.info("Bootstrap user '%s' is already the target non-root user - skipping creation.", tpot_user)
+        if not ssh.run("sudo -n true", check=False).ok:
+            raise RuntimeError(
+                f"User '{tpot_user}' does not have passwordless sudo configured, which the unattended "
+                "T-Pot installer needs. Configure it (visudo / /etc/sudoers.d/) before re-running."
+            )
+        ssh.run("sudo -n apt-get update -y && sudo -n apt-get install -y git curl")
+        return
+
+    if bootstrap_user != "root":
+        raise RuntimeError(
+            f"Bootstrap user is '{bootstrap_user}' (non-root) and differs from tpot_user '{tpot_user}' - "
+            "this script only knows how to create a new sudo user when bootstrapping as root. Either set "
+            "tpot.user to match ec2.bootstrap_user, or bootstrap as root."
+        )
 
     exists = ssh.run(f"id -u {tpot_user}", check=False).ok
     if exists:
@@ -154,9 +180,14 @@ def run_tpot_installer(ssh_tpot: SSHClient, flavor: str, web_user: str, web_pass
     else:
         ssh_tpot.run(f"git clone {TPOT_REPO_URL} ~/{TPOT_HOME_DIRNAME}", timeout=180)
 
+    # Deliberately NOT run under sudo: install.sh checks it isn't running as
+    # root (it invokes sudo internally for the specific steps that need
+    # elevation) - wrapping the whole thing in sudo makes EUID 0 and the
+    # script refuses immediately with "should not be run as root".
     install_cmd = (
         f"cd ~/{TPOT_HOME_DIRNAME} && "
-        f"sudo -n ./install.sh -s -t {flavor} -u {web_user} -p '{web_password}'"
+        f"chmod +x install.sh && "
+        f"./install.sh -s -t {flavor} -u {web_user} -p '{web_password}'"
     )
     logger.info("Running unattended installer (this typically takes 10-20 minutes)...")
     result = ssh_tpot.run(install_cmd, check=False, timeout=2400, log_output=True)
@@ -307,7 +338,7 @@ def main() -> int:
             bootstrap = SSHClient(host=cfg.ec2_host, user=cfg.ec2_user, key_path=cfg.ssh_key_expanded, port=cfg.ec2_port)
             bootstrap.connect(retries=3, retry_wait=10)
             check_prerequisites(bootstrap, flavor)
-            ensure_tpot_user(bootstrap, cfg.tpot_user)
+            ensure_tpot_user(bootstrap, cfg.tpot_user, cfg.ec2_user)
             bootstrap.close()
 
             tpot_conn = SSHClient(host=cfg.ec2_host, user=cfg.tpot_user, key_path=cfg.ssh_key_expanded, port=cfg.ec2_port)

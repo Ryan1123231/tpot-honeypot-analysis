@@ -23,6 +23,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import ipaddress
 import json
 import re
 import sys
@@ -111,6 +112,17 @@ def dump_sample(logs_dir: Path, n: int = 5) -> None:
             print("  (no data)")
 
 
+def is_routable_public_ip(ip_str: str) -> bool:
+    """A real internet attacker's src_ip can never be private/link-local/
+    loopback/reserved - if we see one of those, it's infrastructure noise
+    (e.g. AWS's 169.254.169.x metadata service), not an attacker."""
+    try:
+        addr = ipaddress.ip_address(ip_str)
+    except ValueError:
+        return False
+    return not (addr.is_private or addr.is_link_local or addr.is_loopback or addr.is_reserved or addr.is_multicast)
+
+
 def parse_timestamp(ts: str | None) -> float | None:
     if not ts:
         return None
@@ -120,7 +132,9 @@ def parse_timestamp(ts: str | None) -> float | None:
         return None
 
 
-def compute_metrics(events: list[Event], geo_cache_path: Path) -> dict[str, Any]:
+def compute_metrics(events: list[Event], geo_cache_path: Path, ignore_ips: set[str] | None = None) -> dict[str, Any]:
+    ignore_ips = ignore_ips or set()
+    ignored_event_count = 0
     ip_counter: Counter[str] = Counter()
     port_counter: Counter[int] = Counter()
     source_counter: Counter[str] = Counter()
@@ -134,6 +148,31 @@ def compute_metrics(events: list[Event], geo_cache_path: Path) -> dict[str, Any]
 
     for ev in events:
         source_counter[ev.source] += 1
+
+        if ev.src_ip and (ev.src_ip in ignore_ips or not is_routable_public_ip(ev.src_ip)):
+            # Either a known-benign (operator/management) IP configured via
+            # analysis.ignore_ips in config.yaml, or a private/link-local/
+            # reserved address (e.g. AWS's 169.254.169.x metadata service)
+            # that can never be a genuine internet attacker. Still counted
+            # in events_by_source above for visibility, but excluded from
+            # every attacker-facing metric.
+            ignored_event_count += 1
+            continue
+
+        # p0f/fatt and Suricata's non-alert event types (flow/dns/tls/...)
+        # passively record ALL traffic through the box, including its own
+        # outbound connections (apt updates, NTP, DNS lookups, etc) - not
+        # just inbound attacks. Only count an event toward
+        # attacker/IP/port/timeline metrics when it's unambiguously
+        # inbound-at-the-honeypot: it came from the 'honeypots' container
+        # (which by construction only ever receives inbound connections),
+        # or it's a Suricata *alert* (a real signature match, not raw flow
+        # metadata). Everything else still counts toward events_by_source
+        # for visibility, but doesn't get to claim an IP as an "attacker".
+        is_attack_signal = ev.source == "honeypots" or (ev.source == "suricata" and ev.event_type == "alert")
+        if not is_attack_signal:
+            continue
+
         if ev.src_ip:
             ip_counter[ev.src_ip] += 1
         if ev.dest_port:
@@ -188,6 +227,7 @@ def compute_metrics(events: list[Event], geo_cache_path: Path) -> dict[str, Any]
     return {
         "generated_at_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "total_events": len(events),
+        "ignored_events_from_allowlisted_ips": ignored_event_count,
         "events_by_source": dict(source_counter),
         "unique_attacker_ips": len(unique_ips),
         "top_ips": top_ips_with_geo,
@@ -214,6 +254,10 @@ def render_markdown_report(metrics: dict[str, Any], logs_dir: Path) -> str:
                   f"&nbsp;|&nbsp; Unique attacker IPs: **{metrics['unique_attacker_ips']}**")
     lines.append("")
     lines.append("Events by source: " + ", ".join(f"`{k}`: {v}" for k, v in metrics["events_by_source"].items()))
+    if metrics.get("ignored_events_from_allowlisted_ips"):
+        lines.append("")
+        lines.append(f"_{metrics['ignored_events_from_allowlisted_ips']} event(s) from allowlisted IPs "
+                      f"(`analysis.ignore_ips` in config.yaml) excluded from the metrics below._")
     lines.append("")
 
     lines.append("## Top Attacking IPs")
@@ -339,7 +383,7 @@ def main() -> int:
         logger.warning("No events parsed from any source under %s - is the honeypot receiving traffic yet?", logs_dir)
 
     geo_cache_path = REPO_ROOT / cfg.geo_cache_path
-    metrics = compute_metrics(all_events, geo_cache_path)
+    metrics = compute_metrics(all_events, geo_cache_path, ignore_ips=set(cfg.ignore_ips))
 
     reports_dir = REPO_ROOT / cfg.reports_dir
     data_dir = reports_dir / "data"
