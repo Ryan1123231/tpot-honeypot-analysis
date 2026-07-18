@@ -1,0 +1,30 @@
+# secrets / local config
+config/config.yaml
+config/*.key
+config/*.pem
+config/tpot_web_credentials.txt
+*.pem
+*_rsa
+*_rsa.pub
+.env
+.ssh_key_ci
+
+# local data pulled from the honeypot (raw logs, can be large / sensitive)
+# leading slash anchors this to the repo root - without it, "data/" would
+# also match reports/data/, which holds committed metrics JSON we want kept.
+/data/
+!/data/.gitkeep
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# os cruft
+.DS_Store
+Thumbs.db
+
+# logs
+*.log
+logs/

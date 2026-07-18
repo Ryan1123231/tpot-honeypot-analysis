@@ -1,0 +1,42 @@
+# Copy this file to config.yaml and fill in real values.
+# config.yaml is gitignored - never commit it.
+#
+# In GitHub Actions, these same values are supplied via repo secrets instead
+# (see .github/workflows/honeypot-report.yml) - config.yaml is only used for
+# local/manual runs.
+
+ec2:
+  host: "3.85.27.179"
+  # Port used for the SSH *management* connection (not the honeypot).
+  # Before deployment this is 22 (default sshd). T-Pot's installer moves the
+  # real sshd to 64295 and lets the honeypot own port 22 - update this value
+  # after deploy_tpot.py finishes.
+  port: 22
+  # Bootstrap login user, used only before T-Pot is installed. T-Pot's
+  # installer refuses to run as root, so deploy_tpot.py creates a dedicated
+  # sudo user (see tpot_user below) and uses it for everything afterward.
+  bootstrap_user: "root"
+  ssh_key_path: "~/.ssh/id_rsa_cloudways"
+
+tpot:
+  # Non-root sudo user created on the box to own the T-Pot install
+  # (required - T-Pot's install.sh refuses to run as root).
+  user: "tpot"
+  # T-Pot install flavor. "i" = Mini, the only flavor that fits comfortably
+  # in 4GB RAM. See docs/METHODOLOGY.md for why Mini was chosen.
+  flavor: "i"
+  # Web UI (Kibana/nginx) login - only relevant if you re-enable the web UI,
+  # which is disabled by default in this setup (see deploy_tpot.py KEEP_SERVICES).
+  web_user: "admin"
+  # Leave blank to auto-generate a random password at deploy time.
+  web_password: ""
+
+geolocation:
+  # Free, keyless batch API used for IP -> country/city lookups.
+  # See scripts/analyze_logs.py for how to swap in MaxMind GeoLite2 instead.
+  provider: "ip-api"
+  cache_path: "data/geo_cache.json"
+
+paths:
+  local_data_dir: "data"
+  reports_dir: "reports"

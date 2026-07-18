@@ -1,0 +1,70 @@
+name: Honeypot Daily Report
+
+# Pulls fresh logs from the T-Pot EC2 box, runs the Python analysis, and
+# commits an updated Markdown report + dashboard back into /reports.
+#
+# Required repository configuration (Settings -> Secrets and variables -> Actions):
+#   Secrets:
+#     EC2_SSH_PRIVATE_KEY   - contents of ~/.ssh/id_rsa_cloudways (the private key)
+#   Variables:
+#     TPOT_EC2_HOST         - e.g. 3.85.27.179 (or the duckdns hostname)
+#     TPOT_USER              - the non-root sudo user created by deploy_tpot.py (default: tpot)
+#
+# Change the cron schedule below to run weekly instead of daily if you prefer
+# (e.g. "0 6 * * 1" for every Monday at 06:00 UTC).
+
+on:
+  schedule:
+    - cron: "0 6 * * *"  # daily at 06:00 UTC
+  workflow_dispatch: {}   # allow manual runs from the Actions tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: honeypot-report
+  cancel-in-progress: false
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Pull logs from T-Pot
+        env:
+          TPOT_EC2_HOST: ${{ vars.TPOT_EC2_HOST }}
+          TPOT_USER: ${{ vars.TPOT_USER }}
+          TPOT_SSH_KEY_CONTENT: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+        run: python scripts/extract_logs.py
+
+      - name: Analyze logs
+        env:
+          TPOT_EC2_HOST: ${{ vars.TPOT_EC2_HOST }}
+          TPOT_USER: ${{ vars.TPOT_USER }}
+        run: python scripts/analyze_logs.py
+
+      - name: Generate HTML dashboard
+        run: python scripts/generate_dashboard.py
+
+      - name: Clean up temporary SSH key
+        if: always()
+        run: rm -f .ssh_key_ci
+
+      - name: Commit updated reports
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(reports): automated honeypot report $(date -u +%Y-%m-%d)"
+          file_pattern: "reports/**"
+          commit_user_name: "honeypot-bot"
+          commit_user_email: "actions@users.noreply.github.com"
