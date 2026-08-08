@@ -23,6 +23,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import gzip
 import ipaddress
 import json
 import re
@@ -93,11 +94,17 @@ def find_latest_logs_dir() -> Path | None:
 def dump_sample(logs_dir: Path, n: int = 5) -> None:
     for source in SOURCES:
         source_dir = logs_dir / source
-        files = list(source_dir.rglob("*.log")) + list(source_dir.rglob("*.json")) if source_dir.exists() else []
+        files = (
+            list(source_dir.rglob("*.log"))
+            + list(source_dir.rglob("*.json"))
+            + list(source_dir.rglob("*.log.*"))
+            + list(source_dir.rglob("*.json.*"))
+        ) if source_dir.exists() else []
         print(f"\n=== {source} ({len(files)} files) ===")
         shown = 0
         for f in files:
-            with open(f, "r", encoding="utf-8", errors="replace") as fh:
+            opener = gzip.open if f.suffix == ".gz" else open
+            with opener(f, "rt", encoding="utf-8", errors="replace") as fh:
                 for line in fh:
                     line = line.strip()
                     if not line:

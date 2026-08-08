@@ -16,6 +16,7 @@ lists - see docs/METHODOLOGY.md "Calibrating the parser" section.
 
 from __future__ import annotations
 
+import gzip
 import json
 import logging
 from dataclasses import dataclass, field
@@ -73,7 +74,8 @@ def _to_int(v: Any) -> int | None:
 def iter_json_lines(path: Path) -> Iterator[dict[str, Any]]:
     """Yield parsed JSON objects from a JSON-lines file, skipping bad lines."""
     skipped = 0
-    with open(path, "r", encoding="utf-8", errors="replace") as fh:
+    opener = gzip.open if path.suffix == ".gz" else open
+    with opener(path, "rt", encoding="utf-8", errors="replace") as fh:
         for line in fh:
             line = line.strip()
             if not line:
@@ -136,11 +138,22 @@ def load_events(source_dir: Path, source_name: str) -> tuple[list[Event], int]:
         logger.warning("Log directory does not exist, skipping: %s", source_dir)
         return events, total_skipped
 
-    files = list(source_dir.rglob("*.log")) + list(source_dir.rglob("*.json"))
+    files = (
+        list(source_dir.rglob("*.log"))
+        + list(source_dir.rglob("*.json"))
+        + list(source_dir.rglob("*.log.*"))
+        + list(source_dir.rglob("*.json.*"))
+    )
     if not files:
         logger.warning("No .log/.json files found under %s", source_dir)
         return events, total_skipped
 
+    # Rotated files (ssh.log.1.gz etc) can overlap with the live log or with
+    # each other across runs, so dedupe on (src_ip, timestamp). Events with
+    # no src_ip (p0f/fatt flow/stats records) are never deduped this way -
+    # collapsing on timestamp alone would wrongly merge distinct events.
+    seen: set[tuple[str, str]] = set()
+    duplicate_count = 0
     for file_path in files:
         for raw in iter_json_lines(file_path):
             if source_name == "suricata":
@@ -151,6 +164,15 @@ def load_events(source_dir: Path, source_name: str) -> tuple[list[Event], int]:
                 if ev.src_ip is None and ev.event_type not in ("flow", "stats"):
                     total_skipped += 1
                     continue
+                if ev.src_ip is not None:
+                    key = (ev.src_ip, ev.timestamp)
+                    if key in seen:
+                        duplicate_count += 1
+                        continue
+                    seen.add(key)
                 events.append(ev)
-    logger.info("Loaded %d events from %s (%s), %d records skipped (no src_ip)", len(events), source_dir, source_name, total_skipped)
+    logger.info(
+        "Loaded %d events from %s (%s), %d records skipped (no src_ip), %d duplicate(s) skipped",
+        len(events), source_dir, source_name, total_skipped, duplicate_count,
+    )
     return events, total_skipped
