@@ -1,0 +1,144 @@
+{
+  "generated_at_utc": "2026-08-08T20:35:32Z",
+  "total_events": 437,
+  "ignored_events_from_allowlisted_ips": 296,
+  "events_by_source": {
+    "honeypots": 2,
+    "suricata": 295,
+    "p0f": 140
+  },
+  "unique_attacker_ips": 12,
+  "top_ips": [
+    {
+      "ip": "73.255.172.206",
+      "count": 5,
+      "country": "United States",
+      "city": "North Port",
+      "org": "Comcast IP Services, L.L.C."
+    },
+    {
+      "ip": "87.236.176.151",
+      "count": 4,
+      "country": "United Kingdom",
+      "city": "Leeds",
+      "org": "Constantine Cybersecurity LTD"
+    },
+    {
+      "ip": "195.178.110.217",
+      "count": 2,
+      "country": "Andorra",
+      "city": "Andorra la Vella",
+      "org": "Techoff SRV Limited"
+    },
+    {
+      "ip": "51.158.205.203",
+      "count": 2,
+      "country": "The Netherlands",
+      "city": "Haarlem",
+      "org": "Scaleway"
+    },
+    {
+      "ip": "18.221.179.104",
+      "count": 1,
+      "country": "United States",
+      "city": "Dublin",
+      "org": "AWS EC2 (us-east-2)"
+    },
+    {
+      "ip": "77.90.185.78",
+      "count": 1,
+      "country": "Germany",
+      "city": "Augsburg",
+      "org": "Limited Network LTD"
+    },
+    {
+      "ip": "151.243.11.230",
+      "count": 1,
+      "country": "Germany",
+      "city": "Frankfurt am Main",
+      "org": "Private Customer"
+    },
+    {
+      "ip": "80.94.92.70",
+      "count": 1,
+      "country": "The Netherlands",
+      "city": "Amsterdam",
+      "org": "Techoff SRV Limited"
+    },
+    {
+      "ip": "193.163.125.45",
+      "count": 1,
+      "country": "United Kingdom",
+      "city": "Leeds",
+      "org": "Constantine Cybersecurity LTD"
+    },
+    {
+      "ip": "193.163.125.254",
+      "count": 1,
+      "country": "United Kingdom",
+      "city": "Leeds",
+      "org": "Constantine Cybersecurity LTD"
+    },
+    {
+      "ip": "45.153.34.181",
+      "count": 1,
+      "country": "The Netherlands",
+      "city": "Amsterdam",
+      "org": "TechTies Inc"
+    },
+    {
+      "ip": "172.215.219.241",
+      "count": 1,
+      "country": "United States",
+      "city": "Cheyenne",
+      "org": "Microsoft Azure Cloud (westcentralus)"
+    }
+  ],
+  "top_countries": [
+    [
+      "United States",
+      7
+    ],
+    [
+      "United Kingdom",
+      6
+    ],
+    [
+      "The Netherlands",
+      4
+    ],
+    [
+      "Germany",
+      2
+    ],
+    [
+      "Andorra",
+      2
+    ]
+  ],
+  "top_ports": [
+    [
+      22,
+      11
+    ],
+    [
+      64295,
+      6
+    ],
+    [
+      443,
+      4
+    ]
+  ],
+  "brute_force_ips": {},
+  "port_scan_ips": {},
+  "malware_families": [],
+  "web_attack_types": [],
+  "top_credential_pairs": [],
+  "timeline_hourly": {
+    "2026-08-08 20:00": 21
+  },
+  "timeline_daily": {
+    "2026-08-08": 21
+  }
+}
