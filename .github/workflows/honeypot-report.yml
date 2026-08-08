@@ -9,6 +9,10 @@ name: Honeypot Daily Report
 #   Variables:
 #     TPOT_EC2_HOST         - e.g. 3.85.27.179 (or the duckdns hostname)
 #     TPOT_USER              - the non-root sudo user created by deploy_tpot.py (default: tpot)
+#     TPOT_IGNORE_IPS        - optional, comma-separated public IPs to exclude from
+#                              attacker metrics (e.g. your own IP). config.yaml is
+#                              gitignored, so this is how CI learns about IPs that
+#                              would otherwise only be ignored on local runs.
 #
 # Change the cron schedule below to run weekly instead of daily if you prefer
 # (e.g. "0 6 * * 1" for every Monday at 06:00 UTC).
@@ -52,6 +56,7 @@ jobs:
         env:
           TPOT_EC2_HOST: ${{ vars.TPOT_EC2_HOST }}
           TPOT_USER: ${{ vars.TPOT_USER }}
+          TPOT_IGNORE_IPS: ${{ vars.TPOT_IGNORE_IPS }}
         run: python scripts/analyze_logs.py
 
       - name: Generate HTML dashboard

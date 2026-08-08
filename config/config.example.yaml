@@ -44,6 +44,8 @@ analysis:
   # the box indiscriminately, so your own admin/management connections
   # (e.g. whatever IP you SSH to port 64295 from) can otherwise show up as
   # an "attacker" in reports. Add your own public IP here.
+  # In CI this list is merged with the TPOT_IGNORE_IPS repo variable, since
+  # this file is gitignored and never reaches the GitHub Actions runner.
   ignore_ips: []
 
 paths:

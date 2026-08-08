@@ -54,6 +54,9 @@ def load_config(config_path: str | Path | None = None) -> TPotConfig:
       TPOT_EC2_HOST, TPOT_EC2_PORT, TPOT_EC2_USER, TPOT_SSH_KEY_PATH,
       TPOT_SSH_KEY_CONTENT (written to a temp file if set, used by CI),
       TPOT_USER, TPOT_FLAVOR, TPOT_WEB_USER, TPOT_WEB_PASSWORD
+
+    TPOT_IGNORE_IPS is the one exception: it's a comma-separated list that is
+    MERGED with (not overridden by) analysis.ignore_ips from the YAML file.
     """
     path = Path(config_path) if config_path else DEFAULT_CONFIG_PATH
     raw = _load_yaml(path)
@@ -64,8 +67,11 @@ def load_config(config_path: str | Path | None = None) -> TPotConfig:
     paths = raw.get("paths", {})
     analysis = raw.get("analysis", {})
 
-    ignore_ips_env = os.environ.get("TPOT_IGNORE_IPS")
-    ignore_ips = ignore_ips_env.split(",") if ignore_ips_env else analysis.get("ignore_ips", [])
+    # Merge (not override) so a locally-checked-out config.yaml and the CI-only
+    # TPOT_IGNORE_IPS repo variable both take effect - config.yaml is gitignored,
+    # so CI has no other way to know about e.g. the deploying admin's own IP.
+    ignore_ips_env = os.environ.get("TPOT_IGNORE_IPS", "")
+    ignore_ips = list(analysis.get("ignore_ips", [])) + ignore_ips_env.split(",")
 
     ssh_key_path = os.environ.get("TPOT_SSH_KEY_PATH", ec2.get("ssh_key_path", "~/.ssh/id_rsa_cloudways"))
 
@@ -95,5 +101,5 @@ def load_config(config_path: str | Path | None = None) -> TPotConfig:
         geo_cache_path=os.environ.get("TPOT_GEO_CACHE_PATH", geo.get("cache_path", "data/geo_cache.json")),
         local_data_dir=os.environ.get("TPOT_LOCAL_DATA_DIR", paths.get("local_data_dir", "data")),
         reports_dir=os.environ.get("TPOT_REPORTS_DIR", paths.get("reports_dir", "reports")),
-        ignore_ips=[ip.strip() for ip in ignore_ips if ip.strip()],
+        ignore_ips=list(dict.fromkeys(ip.strip() for ip in ignore_ips if ip.strip())),
     )
