@@ -1,10 +1,10 @@
-# T-Pot Honeypot Report - 2026-08-08T21:26:33Z
+# T-Pot Honeypot Report - 2026-08-08T21:39:27Z
 
-Source data: `20260808T212626Z` &nbsp;|&nbsp; Total events analyzed: **7498** &nbsp;|&nbsp; Unique attacker IPs: **168**
+Source data: `20260808T213920Z` &nbsp;|&nbsp; Total events analyzed: **7604** &nbsp;|&nbsp; Unique attacker IPs: **172**
 
-Events by source: `honeypots`: 504, `suricata`: 6441, `p0f`: 553
+Events by source: `honeypots`: 508, `suricata`: 6536, `p0f`: 560
 
-_5401 event(s) from allowlisted IPs (`analysis.ignore_ips` in config.yaml) excluded from the metrics below._
+_5514 event(s) from allowlisted IPs (`analysis.ignore_ips` in config.yaml) excluded from the metrics below._
 
 ## Top Attacking IPs
 | IP | Events | Country | City | Org/ASN |
@@ -16,7 +16,6 @@ _5401 event(s) from allowlisted IPs (`analysis.ignore_ips` in config.yaml) exclu
 | `167.94.146.52` | 14 | Germany | Frankfurt am Main | Censys, Inc. |
 | `66.132.224.93` | 13 | United States | Ann Arbor | Censys Inc |
 | `195.178.110.217` | 13 | Andorra | Andorra la Vella | Techoff SRV Limited |
-| `73.255.172.206` | 12 | United States | North Port | Comcast IP Services, L.L.C. |
 | `36.94.136.43` | 12 | Indonesia | Bogor | Telekomunikasi Indonesia |
 | `93.174.93.12` | 10 | The Netherlands | Amsterdam | IP Volume inc |
 | `71.6.158.166` | 10 | United States | San Diego | CariNet, Inc. |
@@ -29,39 +28,40 @@ _5401 event(s) from allowlisted IPs (`analysis.ignore_ips` in config.yaml) exclu
 | `8.216.13.61` | 6 | Japan | Tokyo | Alibaba.com Singapore E-Commerce Private Limited |
 | `195.182.16.23` | 6 | Germany | Frankfurt am Main | Amarutu Technology Ltd |
 | `118.26.111.94` | 6 | Singapore | Singapore | Ucloud Information Technology (hk) Limited |
+| `31.220.72.85` | 5 | France | Lauterbourg | Contabo GmbH |
 
 ## Top Countries
 | Country | Events |
 |---|---:|
-| United States | 174 |
+| United States | 163 |
 | Indonesia | 113 |
 | China | 106 |
 | Switzerland | 93 |
 | The Netherlands | 60 |
 | France | 53 |
-| Germany | 39 |
+| Germany | 44 |
 | United Kingdom | 32 |
 | Singapore | 17 |
 | Andorra | 15 |
 | Hong Kong | 9 |
 | South Africa | 9 |
-| Brazil | 8 |
+| Brazil | 9 |
 | Japan | 7 |
 | Lithuania | 5 |
 | Russia | 4 |
 | India | 3 |
 | Bulgaria | 2 |
 | Iran | 2 |
-| South Korea | 2 |
+| Armenia | 2 |
 
 ## Top Targeted Ports
 | Port | Events |
 |---|---:|
-| 80 | 395 |
-| 443 | 240 |
-| 22 | 100 |
-| 64295 | 12 |
+| 80 | 401 |
+| 443 | 242 |
+| 22 | 98 |
 | 34332 | 8 |
+| 64295 | 3 |
 | 60392 | 2 |
 | 59506 | 2 |
 | 60380 | 1 |
@@ -89,8 +89,8 @@ _None detected in this period._
 ## Timeline (daily)
 | Date | Events |
 |---|---:|
-| 2026-07-18 | 616 |
-| 2026-08-08 | 147 |
+| 2026-07-18 | 609 |
+| 2026-08-08 | 151 |
 
 ---
 _Generated automatically by `scripts/analyze_logs.py`. See `scripts/generate_dashboard.py` for a chart-based HTML view of this same data._
