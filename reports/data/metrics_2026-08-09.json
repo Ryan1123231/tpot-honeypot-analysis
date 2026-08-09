@@ -1,0 +1,390 @@
+{
+  "generated_at_utc": "2026-08-09T06:37:52Z",
+  "total_events": 12085,
+  "ignored_events_from_allowlisted_ips": 8957,
+  "events_by_source": {
+    "honeypots": 744,
+    "suricata": 10510,
+    "p0f": 831
+  },
+  "unique_attacker_ips": 265,
+  "top_ips": [
+    {
+      "ip": "110.35.80.116",
+      "count": 99,
+      "country": "Indonesia",
+      "city": "Tangerang",
+      "org": ""
+    },
+    {
+      "ip": "117.177.102.79",
+      "count": 99,
+      "country": "China",
+      "city": "Guangzhou",
+      "org": "China Mobile"
+    },
+    {
+      "ip": "42.112.49.255",
+      "count": 98,
+      "country": "Vietnam",
+      "city": "Hanoi",
+      "org": ""
+    },
+    {
+      "ip": "209.99.185.239",
+      "count": 93,
+      "country": "Switzerland",
+      "city": "Zurich",
+      "org": "HostRoyale Technologies"
+    },
+    {
+      "ip": "62.210.142.163",
+      "count": 37,
+      "country": "France",
+      "city": "Paris",
+      "org": "ONLINE"
+    },
+    {
+      "ip": "118.26.111.107",
+      "count": 31,
+      "country": "Singapore",
+      "city": "Singapore",
+      "org": "Ucloud Information Technology (hk) Limited"
+    },
+    {
+      "ip": "167.94.146.52",
+      "count": 14,
+      "country": "Germany",
+      "city": "Frankfurt am Main",
+      "org": "Censys, Inc."
+    },
+    {
+      "ip": "65.49.1.10",
+      "count": 14,
+      "country": "United States",
+      "city": "Pleasanton",
+      "org": "The Shadow Server Foundation"
+    },
+    {
+      "ip": "66.132.224.93",
+      "count": 13,
+      "country": "United States",
+      "city": "Ann Arbor",
+      "org": "Censys Inc"
+    },
+    {
+      "ip": "195.182.16.23",
+      "count": 13,
+      "country": "Germany",
+      "city": "Frankfurt am Main",
+      "org": "Amarutu Technology Ltd"
+    },
+    {
+      "ip": "66.132.195.117",
+      "count": 13,
+      "country": "United States",
+      "city": "Ann Arbor",
+      "org": "Censys, Inc."
+    },
+    {
+      "ip": "195.178.110.217",
+      "count": 13,
+      "country": "Andorra",
+      "city": "Andorra la Vella",
+      "org": "Techoff SRV Limited"
+    },
+    {
+      "ip": "167.94.146.58",
+      "count": 12,
+      "country": "Germany",
+      "city": "Frankfurt am Main",
+      "org": "Censys, Inc."
+    },
+    {
+      "ip": "43.153.206.227",
+      "count": 12,
+      "country": "Singapore",
+      "city": "Singapore",
+      "org": "Tencent Cloud Computing"
+    },
+    {
+      "ip": "36.94.136.43",
+      "count": 12,
+      "country": "Indonesia",
+      "city": "Bogor",
+      "org": "Telekomunikasi Indonesia"
+    },
+    {
+      "ip": "160.119.76.64",
+      "count": 11,
+      "country": "The Netherlands",
+      "city": "Amsterdam",
+      "org": "HostUS Solutions LLC"
+    },
+    {
+      "ip": "93.174.93.12",
+      "count": 10,
+      "country": "The Netherlands",
+      "city": "Amsterdam",
+      "org": "IP Volume inc"
+    },
+    {
+      "ip": "71.6.158.166",
+      "count": 10,
+      "country": "United States",
+      "city": "San Diego",
+      "org": "CariNet, Inc."
+    },
+    {
+      "ip": "168.76.20.229",
+      "count": 9,
+      "country": "South Africa",
+      "city": "Bloemfontein",
+      "org": "Free State Education Department"
+    },
+    {
+      "ip": "5.61.209.43",
+      "count": 9,
+      "country": "The Netherlands",
+      "city": "Amsterdam",
+      "org": ""
+    }
+  ],
+  "top_countries": [
+    [
+      "United States",
+      285
+    ],
+    [
+      "Indonesia",
+      114
+    ],
+    [
+      "China",
+      109
+    ],
+    [
+      "Vietnam",
+      103
+    ],
+    [
+      "The Netherlands",
+      95
+    ],
+    [
+      "Switzerland",
+      93
+    ],
+    [
+      "Germany",
+      72
+    ],
+    [
+      "France",
+      60
+    ],
+    [
+      "Singapore",
+      58
+    ],
+    [
+      "United Kingdom",
+      39
+    ],
+    [
+      "Brazil",
+      16
+    ],
+    [
+      "Andorra",
+      16
+    ],
+    [
+      "South Africa",
+      10
+    ],
+    [
+      "Hong Kong",
+      9
+    ],
+    [
+      "Japan",
+      7
+    ],
+    [
+      "Thailand",
+      6
+    ],
+    [
+      "Chile",
+      6
+    ],
+    [
+      "Ukraine",
+      5
+    ],
+    [
+      "Argentina",
+      5
+    ],
+    [
+      "Lithuania",
+      5
+    ]
+  ],
+  "top_ports": [
+    [
+      80,
+      603
+    ],
+    [
+      443,
+      311
+    ],
+    [
+      22,
+      206
+    ],
+    [
+      34332,
+      8
+    ],
+    [
+      37638,
+      7
+    ],
+    [
+      64295,
+      4
+    ],
+    [
+      60392,
+      2
+    ],
+    [
+      49128,
+      2
+    ],
+    [
+      59506,
+      2
+    ],
+    [
+      60380,
+      1
+    ],
+    [
+      50746,
+      1
+    ],
+    [
+      42366,
+      1
+    ],
+    [
+      59498,
+      1
+    ],
+    [
+      58710,
+      1
+    ]
+  ],
+  "brute_force_ips": {
+    "118.26.111.107": 8
+  },
+  "port_scan_ips": {},
+  "malware_families": [],
+  "web_attack_types": [],
+  "top_credential_pairs": [
+    {
+      "username": "admin",
+      "password": "admin",
+      "count": 2
+    },
+    {
+      "username": "orangepi",
+      "password": "orangepi",
+      "count": 2
+    },
+    {
+      "username": "root",
+      "password": "P",
+      "count": 2
+    },
+    {
+      "username": "root",
+      "password": "password",
+      "count": 2
+    },
+    {
+      "username": "root",
+      "password": "root",
+      "count": 1
+    },
+    {
+      "username": "root",
+      "password": "Admin",
+      "count": 1
+    },
+    {
+      "username": "root",
+      "password": "admin",
+      "count": 1
+    },
+    {
+      "username": "root",
+      "password": "1qaz",
+      "count": 1
+    },
+    {
+      "username": "root",
+      "password": "000000",
+      "count": 1
+    },
+    {
+      "username": "root",
+      "password": "111111",
+      "count": 1
+    },
+    {
+      "username": "root",
+      "password": "123",
+      "count": 1
+    }
+  ],
+  "timeline_hourly": {
+    "2026-07-18 08:00": 5,
+    "2026-07-18 09:00": 18,
+    "2026-07-18 10:00": 41,
+    "2026-07-18 11:00": 3,
+    "2026-07-18 12:00": 17,
+    "2026-07-18 13:00": 26,
+    "2026-07-18 14:00": 15,
+    "2026-07-18 15:00": 35,
+    "2026-07-18 16:00": 32,
+    "2026-07-18 17:00": 30,
+    "2026-07-18 18:00": 122,
+    "2026-07-18 19:00": 23,
+    "2026-07-18 20:00": 125,
+    "2026-07-18 21:00": 81,
+    "2026-07-18 22:00": 31,
+    "2026-07-18 23:00": 5,
+    "2026-08-08 20:00": 125,
+    "2026-08-08 21:00": 31,
+    "2026-08-08 22:00": 20,
+    "2026-08-08 23:00": 44,
+    "2026-08-09 00:00": 62,
+    "2026-08-09 01:00": 112,
+    "2026-08-09 02:00": 17,
+    "2026-08-09 03:00": 25,
+    "2026-08-09 04:00": 47,
+    "2026-08-09 05:00": 38,
+    "2026-08-09 06:00": 20
+  },
+  "timeline_daily": {
+    "2026-07-18": 609,
+    "2026-08-08": 220,
+    "2026-08-09": 321
+  }
+}
