@@ -1,0 +1,490 @@
+{
+  "generated_at_utc": "2026-08-10T07:09:50Z",
+  "total_events": 24575,
+  "ignored_events_from_allowlisted_ips": 16860,
+  "events_by_source": {
+    "honeypots": 1731,
+    "suricata": 20757,
+    "p0f": 2087
+  },
+  "unique_attacker_ips": 509,
+  "top_ips": [
+    {
+      "ip": "43.128.101.247",
+      "count": 353,
+      "country": "Singapore",
+      "city": "Singapore",
+      "org": "Tencent Cloud Computing"
+    },
+    {
+      "ip": "48.211.210.113",
+      "count": 127,
+      "country": "United States",
+      "city": "Boydton",
+      "org": "Microsoft Azure Cloud (eastus2)"
+    },
+    {
+      "ip": "110.35.80.116",
+      "count": 99,
+      "country": "Indonesia",
+      "city": "Tangerang",
+      "org": ""
+    },
+    {
+      "ip": "117.177.102.79",
+      "count": 99,
+      "country": "China",
+      "city": "Guangzhou",
+      "org": "China Mobile"
+    },
+    {
+      "ip": "101.36.104.242",
+      "count": 99,
+      "country": "Japan",
+      "city": "Tokyo",
+      "org": "Ucloud Information Technology"
+    },
+    {
+      "ip": "42.112.49.255",
+      "count": 98,
+      "country": "Vietnam",
+      "city": "Hanoi",
+      "org": ""
+    },
+    {
+      "ip": "20.29.206.228",
+      "count": 93,
+      "country": "United States",
+      "city": "Quincy",
+      "org": "Microsoft Azure Cloud (westus2)"
+    },
+    {
+      "ip": "209.99.185.239",
+      "count": 93,
+      "country": "Switzerland",
+      "city": "Zurich",
+      "org": "HostRoyale Technologies"
+    },
+    {
+      "ip": "62.210.142.163",
+      "count": 37,
+      "country": "France",
+      "city": "Paris",
+      "org": "ONLINE"
+    },
+    {
+      "ip": "62.210.142.171",
+      "count": 37,
+      "country": "France",
+      "city": "Paris",
+      "org": "ONLINE"
+    },
+    {
+      "ip": "118.26.111.107",
+      "count": 31,
+      "country": "Singapore",
+      "city": "Singapore",
+      "org": "Ucloud Information Technology (hk) Limited"
+    },
+    {
+      "ip": "193.32.162.42",
+      "count": 23,
+      "country": "The Netherlands",
+      "city": "Amsterdam",
+      "org": "Techoff SRV Limited"
+    },
+    {
+      "ip": "160.119.76.64",
+      "count": 22,
+      "country": "The Netherlands",
+      "city": "Amsterdam",
+      "org": "HostUS Solutions LLC"
+    },
+    {
+      "ip": "93.174.93.12",
+      "count": 20,
+      "country": "The Netherlands",
+      "city": "Amsterdam",
+      "org": "IP Volume inc"
+    },
+    {
+      "ip": "195.182.16.23",
+      "count": 17,
+      "country": "Germany",
+      "city": "Frankfurt am Main",
+      "org": "Amarutu Technology Ltd"
+    },
+    {
+      "ip": "162.217.100.36",
+      "count": 17,
+      "country": "United States",
+      "city": "Dallas",
+      "org": "Internap Holding LLC"
+    },
+    {
+      "ip": "162.217.100.41",
+      "count": 17,
+      "country": "United States",
+      "city": "Dallas",
+      "org": "Internap Holding LLC"
+    },
+    {
+      "ip": "65.49.1.10",
+      "count": 14,
+      "country": "United States",
+      "city": "Pleasanton",
+      "org": "The Shadow Server Foundation"
+    },
+    {
+      "ip": "167.94.146.52",
+      "count": 14,
+      "country": "Germany",
+      "city": "Frankfurt am Main",
+      "org": "Censys, Inc."
+    },
+    {
+      "ip": "66.132.195.48",
+      "count": 13,
+      "country": "United States",
+      "city": "Ann Arbor",
+      "org": "Censys, Inc."
+    }
+  ],
+  "top_countries": [
+    [
+      "United States",
+      809
+    ],
+    [
+      "Singapore",
+      419
+    ],
+    [
+      "The Netherlands",
+      200
+    ],
+    [
+      "China",
+      136
+    ],
+    [
+      "Japan",
+      118
+    ],
+    [
+      "Indonesia",
+      117
+    ],
+    [
+      "Germany",
+      111
+    ],
+    [
+      "Vietnam",
+      110
+    ],
+    [
+      "France",
+      108
+    ],
+    [
+      "Switzerland",
+      96
+    ],
+    [
+      "United Kingdom",
+      73
+    ],
+    [
+      "Hong Kong",
+      34
+    ],
+    [
+      "Brazil",
+      34
+    ],
+    [
+      "Ukraine",
+      19
+    ],
+    [
+      "Andorra",
+      19
+    ],
+    [
+      "Czechia",
+      18
+    ],
+    [
+      "Canada",
+      12
+    ],
+    [
+      "Russia",
+      12
+    ],
+    [
+      "Malaysia",
+      12
+    ],
+    [
+      "Romania",
+      12
+    ]
+  ],
+  "top_ports": [
+    [
+      80,
+      1219
+    ],
+    [
+      22,
+      796
+    ],
+    [
+      443,
+      547
+    ],
+    [
+      34332,
+      8
+    ],
+    [
+      64295,
+      7
+    ],
+    [
+      37638,
+      7
+    ],
+    [
+      59506,
+      2
+    ],
+    [
+      60392,
+      2
+    ],
+    [
+      49128,
+      2
+    ],
+    [
+      39498,
+      1
+    ],
+    [
+      34576,
+      1
+    ],
+    [
+      59498,
+      1
+    ],
+    [
+      58710,
+      1
+    ],
+    [
+      60380,
+      1
+    ],
+    [
+      50746,
+      1
+    ],
+    [
+      42366,
+      1
+    ],
+    [
+      33812,
+      1
+    ],
+    [
+      55092,
+      1
+    ],
+    [
+      56572,
+      1
+    ],
+    [
+      44422,
+      1
+    ]
+  ],
+  "brute_force_ips": {
+    "43.128.101.247": 113,
+    "118.26.111.107": 8,
+    "193.32.162.42": 7
+  },
+  "port_scan_ips": {
+    "140.248.150.49": 8,
+    "146.75.38.49": 5
+  },
+  "malware_families": [],
+  "web_attack_types": [],
+  "top_credential_pairs": [
+    {
+      "username": "root",
+      "password": "111111",
+      "count": 2
+    },
+    {
+      "username": "root",
+      "password": "123",
+      "count": 2
+    },
+    {
+      "username": "test2",
+      "password": "test2",
+      "count": 2
+    },
+    {
+      "username": "admin",
+      "password": "admin",
+      "count": 2
+    },
+    {
+      "username": "orangepi",
+      "password": "orangepi",
+      "count": 2
+    },
+    {
+      "username": "root",
+      "password": "P",
+      "count": 2
+    },
+    {
+      "username": "root",
+      "password": "password",
+      "count": 2
+    },
+    {
+      "username": "root",
+      "password": "000000",
+      "count": 1
+    },
+    {
+      "username": "test1",
+      "password": "test1",
+      "count": 1
+    },
+    {
+      "username": "test3",
+      "password": "test3",
+      "count": 1
+    },
+    {
+      "username": "root",
+      "password": "root123",
+      "count": 1
+    },
+    {
+      "username": "root",
+      "password": "root321",
+      "count": 1
+    },
+    {
+      "username": "root",
+      "password": "321",
+      "count": 1
+    },
+    {
+      "username": "amir",
+      "password": "123456",
+      "count": 1
+    },
+    {
+      "username": "sonar",
+      "password": "123456",
+      "count": 1
+    },
+    {
+      "username": "devuser",
+      "password": "devuser",
+      "count": 1
+    },
+    {
+      "username": "myuser",
+      "password": "myuser",
+      "count": 1
+    },
+    {
+      "username": "root",
+      "password": "Huawei123",
+      "count": 1
+    },
+    {
+      "username": "tester",
+      "password": "tester",
+      "count": 1
+    },
+    {
+      "username": "admin",
+      "password": "admin!@",
+      "count": 1
+    }
+  ],
+  "timeline_hourly": {
+    "2026-07-18 08:00": 5,
+    "2026-07-18 09:00": 18,
+    "2026-07-18 10:00": 41,
+    "2026-07-18 11:00": 3,
+    "2026-07-18 12:00": 17,
+    "2026-07-18 13:00": 26,
+    "2026-07-18 14:00": 15,
+    "2026-07-18 15:00": 35,
+    "2026-07-18 16:00": 32,
+    "2026-07-18 17:00": 30,
+    "2026-07-18 18:00": 122,
+    "2026-07-18 19:00": 23,
+    "2026-07-18 20:00": 125,
+    "2026-07-18 21:00": 81,
+    "2026-07-18 22:00": 31,
+    "2026-07-18 23:00": 5,
+    "2026-08-08 20:00": 125,
+    "2026-08-08 21:00": 31,
+    "2026-08-08 22:00": 20,
+    "2026-08-08 23:00": 44,
+    "2026-08-09 00:00": 62,
+    "2026-08-09 01:00": 112,
+    "2026-08-09 02:00": 17,
+    "2026-08-09 03:00": 25,
+    "2026-08-09 04:00": 47,
+    "2026-08-09 05:00": 38,
+    "2026-08-09 06:00": 136,
+    "2026-08-09 07:00": 30,
+    "2026-08-09 08:00": 19,
+    "2026-08-09 09:00": 21,
+    "2026-08-09 10:00": 25,
+    "2026-08-09 11:00": 66,
+    "2026-08-09 12:00": 12,
+    "2026-08-09 13:00": 18,
+    "2026-08-09 14:00": 30,
+    "2026-08-09 15:00": 17,
+    "2026-08-09 16:00": 22,
+    "2026-08-09 17:00": 57,
+    "2026-08-09 18:00": 30,
+    "2026-08-09 19:00": 43,
+    "2026-08-09 20:00": 41,
+    "2026-08-09 21:00": 21,
+    "2026-08-09 22:00": 29,
+    "2026-08-09 23:00": 23,
+    "2026-08-10 00:00": 25,
+    "2026-08-10 01:00": 382,
+    "2026-08-10 02:00": 47,
+    "2026-08-10 03:00": 34,
+    "2026-08-10 04:00": 162,
+    "2026-08-10 05:00": 35,
+    "2026-08-10 06:00": 135,
+    "2026-08-10 07:00": 18
+  },
+  "timeline_daily": {
+    "2026-07-18": 609,
+    "2026-08-08": 220,
+    "2026-08-09": 941,
+    "2026-08-10": 838
+  }
+}
