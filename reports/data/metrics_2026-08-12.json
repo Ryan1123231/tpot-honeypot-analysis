@@ -1,0 +1,551 @@
+{
+  "generated_at_utc": "2026-08-12T07:08:16Z",
+  "total_events": 76899,
+  "ignored_events_from_allowlisted_ips": 33816,
+  "events_by_source": {
+    "honeypots": 5042,
+    "suricata": 55817,
+    "p0f": 16040
+  },
+  "unique_attacker_ips": 1015,
+  "top_ips": [
+    {
+      "ip": "103.48.192.62",
+      "count": 1107,
+      "country": "Vietnam",
+      "city": "Dich Vong",
+      "org": "JSC - Hanoi"
+    },
+    {
+      "ip": "160.187.174.22",
+      "count": 500,
+      "country": "Indonesia",
+      "city": "Deli Serdang",
+      "org": "Indonesia Network Information Center"
+    },
+    {
+      "ip": "43.128.101.247",
+      "count": 353,
+      "country": "Singapore",
+      "city": "Singapore",
+      "org": "Tencent Cloud Computing"
+    },
+    {
+      "ip": "62.238.96.127",
+      "count": 309,
+      "country": "Finland",
+      "city": "Helsinki",
+      "org": "DELTA Fiber Nederland B.V"
+    },
+    {
+      "ip": "45.142.193.164",
+      "count": 293,
+      "country": "United Kingdom",
+      "city": "Manchester",
+      "org": "Limited Network LTD"
+    },
+    {
+      "ip": "110.35.80.116",
+      "count": 290,
+      "country": "Indonesia",
+      "city": "Tangerang",
+      "org": ""
+    },
+    {
+      "ip": "44.200.60.249",
+      "count": 229,
+      "country": "United States",
+      "city": "Ashburn",
+      "org": "AWS EC2 (us-east-1)"
+    },
+    {
+      "ip": "54.158.235.217",
+      "count": 218,
+      "country": "United States",
+      "city": "Ashburn",
+      "org": "AWS EC2 (us-east-1)"
+    },
+    {
+      "ip": "186.206.2.108",
+      "count": 203,
+      "country": "Brazil",
+      "city": "Curitiba",
+      "org": "NET Servi\u00e7os de Comunica\u00e7\u00e3o S.A."
+    },
+    {
+      "ip": "184.160.50.110",
+      "count": 203,
+      "country": "Canada",
+      "city": "Saint-Constant",
+      "org": "Videotron Ltee"
+    },
+    {
+      "ip": "94.183.226.226",
+      "count": 148,
+      "country": "Germany",
+      "city": "Frankfurt am Main",
+      "org": "Eternity International Limited"
+    },
+    {
+      "ip": "48.211.210.113",
+      "count": 127,
+      "country": "United States",
+      "city": "Boydton",
+      "org": "Microsoft Azure Cloud (eastus2)"
+    },
+    {
+      "ip": "43.153.206.227",
+      "count": 112,
+      "country": "Singapore",
+      "city": "Singapore",
+      "org": "Tencent Cloud Computing"
+    },
+    {
+      "ip": "101.36.104.242",
+      "count": 99,
+      "country": "Japan",
+      "city": "Tokyo",
+      "org": "Ucloud Information Technology"
+    },
+    {
+      "ip": "117.177.102.79",
+      "count": 99,
+      "country": "China",
+      "city": "Guangzhou",
+      "org": "China Mobile"
+    },
+    {
+      "ip": "42.112.49.255",
+      "count": 98,
+      "country": "Vietnam",
+      "city": "Hanoi",
+      "org": ""
+    },
+    {
+      "ip": "20.29.206.228",
+      "count": 93,
+      "country": "United States",
+      "city": "Quincy",
+      "org": "Microsoft Azure Cloud (westus2)"
+    },
+    {
+      "ip": "47.85.8.171",
+      "count": 93,
+      "country": "United States",
+      "city": "Charlottesville",
+      "org": "Midwest Cable, Delta Centric LLC, Zenlayer Inc"
+    },
+    {
+      "ip": "209.99.185.239",
+      "count": 93,
+      "country": "Switzerland",
+      "city": "Zurich",
+      "org": "HostRoyale Technologies"
+    },
+    {
+      "ip": "185.200.36.42",
+      "count": 90,
+      "country": "T\u00fcrkiye",
+      "city": "Antakya",
+      "org": "High Speed Telekomunikasyon ve Hab. Hiz. Ltd. Sti"
+    }
+  ],
+  "top_countries": [
+    [
+      "United States",
+      1948
+    ],
+    [
+      "Vietnam",
+      1219
+    ],
+    [
+      "Indonesia",
+      816
+    ],
+    [
+      "Singapore",
+      576
+    ],
+    [
+      "The Netherlands",
+      425
+    ],
+    [
+      "United Kingdom",
+      404
+    ],
+    [
+      "Germany",
+      351
+    ],
+    [
+      "Finland",
+      309
+    ],
+    [
+      "Brazil",
+      293
+    ],
+    [
+      "China",
+      244
+    ],
+    [
+      "Canada",
+      234
+    ],
+    [
+      "France",
+      169
+    ],
+    [
+      "Japan",
+      124
+    ],
+    [
+      "Switzerland",
+      108
+    ],
+    [
+      "Argentina",
+      93
+    ],
+    [
+      "T\u00fcrkiye",
+      93
+    ],
+    [
+      "Andorra",
+      58
+    ],
+    [
+      "Hong Kong",
+      50
+    ],
+    [
+      "Ukraine",
+      42
+    ],
+    [
+      "India",
+      32
+    ]
+  ],
+  "top_ports": [
+    [
+      22,
+      4344
+    ],
+    [
+      80,
+      2126
+    ],
+    [
+      443,
+      1499
+    ],
+    [
+      64295,
+      10
+    ],
+    [
+      34332,
+      8
+    ],
+    [
+      37638,
+      7
+    ],
+    [
+      57612,
+      2
+    ],
+    [
+      60392,
+      2
+    ],
+    [
+      49128,
+      2
+    ],
+    [
+      59408,
+      2
+    ],
+    [
+      59506,
+      2
+    ],
+    [
+      39498,
+      1
+    ],
+    [
+      34576,
+      1
+    ],
+    [
+      57600,
+      1
+    ],
+    [
+      36966,
+      1
+    ],
+    [
+      37810,
+      1
+    ],
+    [
+      35666,
+      1
+    ],
+    [
+      33812,
+      1
+    ],
+    [
+      55092,
+      1
+    ],
+    [
+      56572,
+      1
+    ]
+  ],
+  "brute_force_ips": {
+    "160.187.174.22": 247,
+    "103.48.192.62": 177,
+    "43.128.101.247": 113,
+    "186.206.2.108": 100,
+    "184.160.50.110": 100,
+    "62.238.96.127": 82,
+    "45.142.193.164": 46,
+    "42.101.60.58": 31,
+    "177.74.153.10": 19,
+    "185.200.36.42": 17,
+    "118.26.111.107": 8,
+    "193.32.162.42": 7,
+    "47.236.188.152": 6,
+    "220.76.68.23": 5
+  },
+  "port_scan_ips": {
+    "140.248.150.49": 10,
+    "146.75.38.49": 5
+  },
+  "malware_families": [],
+  "web_attack_types": [],
+  "top_credential_pairs": [
+    {
+      "username": "root",
+      "password": "111111",
+      "count": 5
+    },
+    {
+      "username": "root",
+      "password": "debian",
+      "count": 5
+    },
+    {
+      "username": "root",
+      "password": "password",
+      "count": 5
+    },
+    {
+      "username": "root",
+      "password": "admin",
+      "count": 5
+    },
+    {
+      "username": "root",
+      "password": "root",
+      "count": 5
+    },
+    {
+      "username": "admin",
+      "password": "admin",
+      "count": 5
+    },
+    {
+      "username": "root",
+      "password": "default",
+      "count": 4
+    },
+    {
+      "username": "root",
+      "password": "passwd",
+      "count": 4
+    },
+    {
+      "username": "root",
+      "password": "ubuntu",
+      "count": 3
+    },
+    {
+      "username": "root",
+      "password": "centos",
+      "count": 3
+    },
+    {
+      "username": "user",
+      "password": "user",
+      "count": 3
+    },
+    {
+      "username": "root",
+      "password": "123456",
+      "count": 3
+    },
+    {
+      "username": "ubuntu",
+      "password": "ubuntu",
+      "count": 3
+    },
+    {
+      "username": "admin",
+      "password": "admin123",
+      "count": 3
+    },
+    {
+      "username": "ubnt",
+      "password": "ubnt",
+      "count": 3
+    },
+    {
+      "username": "root",
+      "password": "123",
+      "count": 3
+    },
+    {
+      "username": "admin",
+      "password": "password",
+      "count": 3
+    },
+    {
+      "username": "root",
+      "password": "toor",
+      "count": 3
+    },
+    {
+      "username": "test2",
+      "password": "test2",
+      "count": 3
+    },
+    {
+      "username": "root",
+      "password": "linux",
+      "count": 3
+    }
+  ],
+  "timeline_hourly": {
+    "2026-07-18 08:00": 5,
+    "2026-07-18 09:00": 18,
+    "2026-07-18 10:00": 41,
+    "2026-07-18 11:00": 3,
+    "2026-07-18 12:00": 17,
+    "2026-07-18 13:00": 26,
+    "2026-07-18 14:00": 15,
+    "2026-07-18 15:00": 35,
+    "2026-07-18 16:00": 32,
+    "2026-07-18 17:00": 30,
+    "2026-07-18 18:00": 122,
+    "2026-07-18 19:00": 23,
+    "2026-07-18 20:00": 125,
+    "2026-07-18 21:00": 81,
+    "2026-07-18 22:00": 31,
+    "2026-07-18 23:00": 5,
+    "2026-08-08 20:00": 125,
+    "2026-08-08 21:00": 31,
+    "2026-08-08 22:00": 20,
+    "2026-08-08 23:00": 44,
+    "2026-08-09 00:00": 62,
+    "2026-08-09 01:00": 112,
+    "2026-08-09 02:00": 17,
+    "2026-08-09 03:00": 25,
+    "2026-08-09 04:00": 47,
+    "2026-08-09 05:00": 38,
+    "2026-08-09 06:00": 136,
+    "2026-08-09 07:00": 30,
+    "2026-08-09 08:00": 19,
+    "2026-08-09 09:00": 21,
+    "2026-08-09 10:00": 25,
+    "2026-08-09 11:00": 66,
+    "2026-08-09 12:00": 12,
+    "2026-08-09 13:00": 18,
+    "2026-08-09 14:00": 30,
+    "2026-08-09 15:00": 17,
+    "2026-08-09 16:00": 22,
+    "2026-08-09 17:00": 57,
+    "2026-08-09 18:00": 30,
+    "2026-08-09 19:00": 43,
+    "2026-08-09 20:00": 41,
+    "2026-08-09 21:00": 21,
+    "2026-08-09 22:00": 29,
+    "2026-08-09 23:00": 23,
+    "2026-08-10 00:00": 25,
+    "2026-08-10 01:00": 382,
+    "2026-08-10 02:00": 47,
+    "2026-08-10 03:00": 34,
+    "2026-08-10 04:00": 162,
+    "2026-08-10 05:00": 35,
+    "2026-08-10 06:00": 135,
+    "2026-08-10 07:00": 269,
+    "2026-08-10 08:00": 114,
+    "2026-08-10 09:00": 188,
+    "2026-08-10 10:00": 360,
+    "2026-08-10 11:00": 177,
+    "2026-08-10 12:00": 202,
+    "2026-08-10 13:00": 172,
+    "2026-08-10 14:00": 138,
+    "2026-08-10 15:00": 74,
+    "2026-08-10 16:00": 600,
+    "2026-08-10 17:00": 67,
+    "2026-08-10 18:00": 42,
+    "2026-08-10 19:00": 73,
+    "2026-08-10 20:00": 102,
+    "2026-08-10 21:00": 85,
+    "2026-08-10 22:00": 61,
+    "2026-08-10 23:00": 124,
+    "2026-08-11 00:00": 190,
+    "2026-08-11 01:00": 317,
+    "2026-08-11 02:00": 107,
+    "2026-08-11 03:00": 173,
+    "2026-08-11 04:00": 270,
+    "2026-08-11 05:00": 91,
+    "2026-08-11 06:00": 69,
+    "2026-08-11 07:00": 37,
+    "2026-08-11 08:00": 36,
+    "2026-08-11 09:00": 37,
+    "2026-08-11 10:00": 56,
+    "2026-08-11 11:00": 32,
+    "2026-08-11 12:00": 39,
+    "2026-08-11 13:00": 27,
+    "2026-08-11 14:00": 31,
+    "2026-08-11 15:00": 59,
+    "2026-08-11 16:00": 16,
+    "2026-08-11 17:00": 42,
+    "2026-08-11 18:00": 16,
+    "2026-08-11 19:00": 27,
+    "2026-08-11 20:00": 44,
+    "2026-08-11 21:00": 29,
+    "2026-08-11 22:00": 324,
+    "2026-08-11 23:00": 55,
+    "2026-08-12 00:00": 18,
+    "2026-08-12 01:00": 296,
+    "2026-08-12 02:00": 48,
+    "2026-08-12 03:00": 34,
+    "2026-08-12 04:00": 20,
+    "2026-08-12 05:00": 16,
+    "2026-08-12 06:00": 28,
+    "2026-08-12 07:00": 8
+  },
+  "timeline_daily": {
+    "2026-07-18": 609,
+    "2026-08-08": 220,
+    "2026-08-09": 941,
+    "2026-08-10": 3668,
+    "2026-08-11": 2124,
+    "2026-08-12": 468
+  }
+}
