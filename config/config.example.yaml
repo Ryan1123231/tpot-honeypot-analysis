@@ -6,7 +6,7 @@
 # local/manual runs.
 
 ec2:
-  host: "3.85.27.179"
+  host: "YOUR.EC2.IP.HERE"
   # Port used for the SSH *management* connection (not the honeypot).
   # Before deployment this is 22 (default sshd). T-Pot's installer moves the
   # real sshd to 64295 and lets the honeypot own port 22 - update this value
@@ -16,7 +16,7 @@ ec2:
   # installer refuses to run as root, so deploy_tpot.py creates a dedicated
   # sudo user (see tpot_user below) and uses it for everything afterward.
   bootstrap_user: "root"
-  ssh_key_path: "~/.ssh/id_rsa_cloudways"
+  ssh_key_path: "~/.ssh/your-key.pem"
 
 tpot:
   # Non-root sudo user created on the box to own the T-Pot install
